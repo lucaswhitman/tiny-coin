@@ -16,8 +16,8 @@ type Block struct {
 	Hash         [Size]byte
 }
 
-func NewBlock(index int, timeStamp time.Time, data string, previousHash [Size]byte) *Block {
-	return &Block{index, timeStamp, data, previousHash, HashBlock(index, timeStamp, data, previousHash)}
+func NewBlock(index int, timeStamp time.Time, data string, previousHash [Size]byte) Block {
+	return Block{index, timeStamp, data, previousHash, HashBlock(index, timeStamp, data, previousHash)}
 }
 
 func HashBlock(index int, timeStamp time.Time, data string, previousHash [Size]byte) [Size]byte {

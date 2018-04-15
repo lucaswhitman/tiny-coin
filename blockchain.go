@@ -1,24 +1,25 @@
-package coin
+package main
 
 import "fmt"
+import "github.com/lucaswhitman/tiny-coin/coin"
 
 func main() {
 	// Create the blockchain and add the genesis block
-	blockchain := make([]Block, 3)
-	blockchain = append(blockchain, CreateGenesisBlock())
-	previousBlock = blockchain[0]
+	var blockchain = make([]coin.Block, 3)
+	blockchain = append(blockchain, coin.CreateGenesisBlock())
+	var previousBlock = blockchain[0]
 
 	// How many blocks should we add to the chain
 	// after the genesis block
-	blocksToAdd = 20
+	var blocksToAdd = 20
 
 	// Add blocks to the chain
 	for i := 0; i < blocksToAdd; i++ {
-		blockToAdd = NextBlock(previousBlock)
+		var blockToAdd = coin.NextBlock(previousBlock)
 		blockchain = append(blockchain, blockToAdd)
 		previousBlock = blockToAdd
 		// Tell everyone about it!
-		fmt.Println("Block #{} has been added to the blockchain!".format(blockToAdd.index))
-		fmt.Println("Hash: {}\n".format(blockToAdd.hash))
+		fmt.Printf("Block %d has been added to the blockchain!\n", blockToAdd.Index)
+		fmt.Printf("Hash: %d\n", blockToAdd.Hash)
 	}
 }

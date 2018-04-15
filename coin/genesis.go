@@ -2,7 +2,7 @@ package coin
 
 import "time"
 
-func CreateGenesisBlock() *Block {
+func CreateGenesisBlock() Block {
 	// Manually construct a block with
 	// index zero and arbitrary previous hash
 	var zero [32]byte
