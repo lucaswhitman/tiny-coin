@@ -5,6 +5,7 @@ https://medium.com/crypto-currently/lets-build-the-tiniest-blockchain-e70965a248
 
 ## Building
 `go build`
+
 `./tinycoin`
 
 ### Create a transaction
