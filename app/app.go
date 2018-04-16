@@ -5,11 +5,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/lucaswhitman/tiny-coin/transaction"
-
 	"github.com/gorilla/mux"
 	"github.com/lucaswhitman/tiny-coin/block"
 	"github.com/lucaswhitman/tiny-coin/service"
+	"github.com/lucaswhitman/tiny-coin/transaction"
 )
 
 type App struct {

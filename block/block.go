@@ -33,11 +33,10 @@ func NewBlock(index int, timeStamp time.Time, data Data, previousHash [Size]byte
 }
 
 func HashBlock(index int, timeStamp time.Time, data Data, previousHash [Size]byte) [Size]byte {
-	sha := sha256.Sum256([]byte(strconv.Itoa(index) +
+	return sha256.Sum256([]byte(strconv.Itoa(index) +
 		timeStamp.String() +
 		strconv.Itoa(data.ProofOfWork) +
 		string(previousHash[:])))
-	return sha
 }
 
 func CreateGenesisBlock() Block {

@@ -46,7 +46,6 @@ func (coinService *CoinService) Mine(w http.ResponseWriter, r *http.Request) {
 	}
 
 	lastBlock := coinService.BlockChain[len(coinService.BlockChain)-1]
-
 	lastProof := lastBlock.Data.ProofOfWork
 	// Find the proof of work for
 	// the current block being mined
@@ -56,17 +55,18 @@ func (coinService *CoinService) Mine(w http.ResponseWriter, r *http.Request) {
 	// Once we find a valid proof of work,
 	// we know we can mine a block so
 	// we reward the miner by adding a transaction
-	t := transaction.Tranaction{address, "Network", 1}
+	t := transaction.Tranaction{To: address, From: "Network", Amount: 1}
 	coinService.ThisNodesTransactions = append(coinService.ThisNodesTransactions, t)
 
 	// Now we can gather the data needed
 	// to create the new block
-	newBlockData := block.Data{proof, coinService.ThisNodesTransactions}
+	newBlockData := block.Data{ProofOfWork: proof,
+		Transactions: coinService.ThisNodesTransactions,
+	}
 
 	// Empty transaction list
-	//coinService.ThisNodesTransactions := []
-	// Now create the
-	// new block!
+	coinService.ThisNodesTransactions = nil
+	// Now create the new block!
 	minedBlock := block.NewBlock(
 		lastBlock.Index+1,
 		time.Now(),
