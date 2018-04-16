@@ -24,7 +24,10 @@ func (a *App) Initialize() {
 	fmt.Print("App Initializing...\n")
 	a.Router = mux.NewRouter()
 	a.initializeRoutes()
-	a.coinService = service.CoinService{a.BlockChain, make([]transaction.Tranaction, 0)}
+	a.coinService = service.CoinService{
+		BlockChain:            a.BlockChain,
+		ThisNodesTransactions: make([]transaction.Tranaction, 0),
+	}
 	fmt.Print("App Initialized!!!\n")
 }
 
@@ -35,6 +38,5 @@ func (a *App) Run(port int) {
 func (a *App) initializeRoutes() {
 	a.Router.HandleFunc("/txion", a.coinService.CreateTransaction).Methods("POST")
 	a.Router.HandleFunc("/mine/{address}", a.coinService.Mine).Methods("GET")
-	//a.Router.HandleFunc("/block", a.coinService.GetBlocks).Methods("PUT")
-
+	a.Router.HandleFunc("/block", a.coinService.GetBlocks).Methods("GET")
 }

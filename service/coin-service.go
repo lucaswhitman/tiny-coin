@@ -83,15 +83,20 @@ func (coinService *CoinService) Mine(w http.ResponseWriter, r *http.Request) {
 	RespondWithJSON(w, http.StatusOK, minedBlock)
 }
 
+// return blockchain for consensus
+func (coinService *CoinService) GetBlocks(w http.ResponseWriter, r *http.Request) {
+	RespondWithJSON(w, http.StatusOK, coinService.BlockChain)
+}
+
 func ProofOfWork(lastProof int) int {
 	// Create a variable that we will use to find
 	// our next proof of work
 	incrementor := lastProof + 1
+
 	// Keep incrementing the incrementor until
 	// it's equal to a number divisible by 9
 	// and the proof of work of the previous
 	// block in the chain
-
 	for incrementor%9 != 0 && (lastProof == 0 || incrementor%lastProof != 0) {
 		incrementor += 1
 	}
