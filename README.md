@@ -9,7 +9,7 @@ https://medium.com/crypto-currently/lets-build-the-tiniest-blockchain-e70965a248
 `./tinycoin`
 
 ### Create a transaction
-You can delete a book using an API call:
+You can create a transaction using an API call:
 `POST /txion`
 #### Example
 ```bash
