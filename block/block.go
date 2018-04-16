@@ -24,7 +24,12 @@ type Block struct {
 }
 
 func NewBlock(index int, timeStamp time.Time, data Data, previousHash [Size]byte) Block {
-	return Block{index, timeStamp, data, previousHash, HashBlock(index, timeStamp, data, previousHash)}
+	return Block{Index: index,
+		TimeStamp:    timeStamp,
+		Data:         data,
+		PreviousHash: previousHash,
+		Hash:         HashBlock(index, timeStamp, data, previousHash),
+	}
 }
 
 func HashBlock(index int, timeStamp time.Time, data Data, previousHash [Size]byte) [Size]byte {
@@ -40,6 +45,6 @@ func CreateGenesisBlock() Block {
 	// index zero and arbitrary previous hash
 	var zero [32]byte
 	var transactions []transaction.Tranaction
-	data := Data{0, transactions}
+	data := Data{ProofOfWork: 0, Transactions: transactions}
 	return NewBlock(0, time.Now(), data, zero)
 }

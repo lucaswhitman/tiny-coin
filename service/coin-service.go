@@ -46,6 +46,7 @@ func (coinService *CoinService) Mine(w http.ResponseWriter, r *http.Request) {
 	}
 
 	lastBlock := coinService.BlockChain[len(coinService.BlockChain)-1]
+
 	lastProof := lastBlock.Data.ProofOfWork
 	// Find the proof of work for
 	// the current block being mined
@@ -90,7 +91,8 @@ func ProofOfWork(lastProof int) int {
 	// it's equal to a number divisible by 9
 	// and the proof of work of the previous
 	// block in the chain
-	for incrementor%9 != 0 && incrementor%lastProof != 0 {
+
+	for incrementor%9 != 0 && (lastProof == 0 || incrementor%lastProof != 0) {
 		incrementor += 1
 	}
 

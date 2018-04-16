@@ -14,5 +14,4 @@ func main() {
 	a.Initialize()
 	fmt.Print("Server Running!!!\n")
 	a.Run(8675)
-
 }
