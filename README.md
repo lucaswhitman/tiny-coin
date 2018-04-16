@@ -46,8 +46,8 @@ The mined coin data
         "ProofOfWork": 9,
         "Transactions": [
             {
-                "to": "Network",
-                "from": "93j4ivnqiopvh43-random-public-key-b-qjrgvnoeirbnferinfo",
+                "to": "93j4ivnqiopvh43-random-public-key-b-qjrgvnoeirbnferinfo",
+                "from": "Network",
                 "amount": 1
             }
         ]

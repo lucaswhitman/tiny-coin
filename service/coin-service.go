@@ -56,7 +56,7 @@ func (coinService *CoinService) Mine(w http.ResponseWriter, r *http.Request) {
 	// Once we find a valid proof of work,
 	// we know we can mine a block so
 	// we reward the miner by adding a transaction
-	t := transaction.Tranaction{"Network", address, 1}
+	t := transaction.Tranaction{address, "Network", 1}
 	coinService.ThisNodesTransactions = append(coinService.ThisNodesTransactions, t)
 
 	// Now we can gather the data needed
